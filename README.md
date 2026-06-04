@@ -5,12 +5,12 @@
 <img src="docs/assets/istinye-university-logo.webp" alt="Istinye University Logo" width="180"/>
 
 ![GitHub](https://img.shields.io/badge/GitHub-Private-red?style=flat-square\&logo=github)
-![Language](https://img.shields.io/badge/Language-Node.js-blue?style=flat-square)
-![Status](https://img.shields.io/badge/Status-In%20Progress-yellow?style=flat-square)
+![Language](https://img.shields.io/badge/Language-Python-blue?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Completed-success?style=flat-square)
 ![Course](https://img.shields.io/badge/Course-BGT006-purple?style=flat-square)
 ![License](https://img.shields.io/badge/License-Educational-green?style=flat-square)
 
-**İstinye Üniversitesi – Penetration Testing (BGT006) Dersi Projesi**
+**İstinye Üniversitesi – Penetration Testing (BGT006) Dersi Final Projesi**
 
 </div>
 
@@ -51,20 +51,18 @@
 
 # 📋 Proje Özeti
 
-Bu çalışma, rekabetçi bilgisayar oyunlarında kullanılan hile yazılımlarının (örneğin Wallhack ve Aimbot) işletim sistemi seviyesinde bellek erişimi mekanizmalarını nasıl kötüye kullanabildiğini teorik ve akademik açıdan incelemektedir.
+Bu çalışma, rekabetçi bilgisayar oyunlarında kullanılan hile yazılımlarının (örneğin Wallhack ve Aimbot) işletim sistemi seviyesindeki bellek erişim mekanizmalarını nasıl kötüye kullanabildiğini teorik ve akademik açıdan incelemektedir.
 
-Proje kapsamında;
+Proje kapsamında aşağıdaki konular ele alınmıştır:
 
-* Hedef süreçlerin (process) tespit edilmesi,
-* Bellek haritalarının analiz edilmesi,
-* Pointer zincirlerinin incelenmesi,
-* Bellek adreslerinin dinamik yapısının değerlendirilmesi,
-* ASLR (Address Space Layout Randomization) mekanizmasının etkilerinin araştırılması,
+* Hedef süreçlerin (process) tespit edilmesi
+* Bellek haritalarının analiz edilmesi
+* Pointer zincirlerinin incelenmesi
+* Bellek adreslerinin dinamik yapısının değerlendirilmesi
+* ASLR (Address Space Layout Randomization) mekanizmasının etkilerinin araştırılması
 * Süreç belleğinden veri elde edilmesine yönelik yöntemlerin teorik analizi
 
-sızma testi metodolojisi çerçevesinde ele alınmaktadır.
-
-Bu çalışma tamamen eğitimsel ve savunma amaçlı güvenlik araştırması niteliğindedir.
+Çalışma, sızma testi metodolojisi çerçevesinde hazırlanmış olup tamamen eğitimsel ve savunma amaçlı güvenlik araştırması niteliğindedir.
 
 ---
 
@@ -83,17 +81,19 @@ Bu çalışma tamamen eğitimsel ve savunma amaçlı güvenlik araştırması ni
 
 ```text
 .
-├── README.md
-├── ROADMAP.md
-├── Dockerfile
-├── docker-compose.yml
-├── .env.example
-├── .gitignore
 ├── docs/
+│   ├── assets/
+│   │   └── evidence-1.png               # Sızma testi kanıtı (Ekran görüntüsü)
 │   ├── modules/
-│   ├── research/
-│   └── references/
-└── src/
+│   │   └── vulnerability-report.md      # Zafiyet değerlendirme raporu
+│   └── research/
+│       └── research-notes-template.md   # Araştırma ve teorik analiz notları
+├── src/
+│   └── main.py                          # Bellek okuma (Memory Read) PoC kodu
+├── .env                                 # Hedef PID ve bellek adresleri
+├── dummy_game.py                        # Hedef sanal oyun (Dummy process)
+├── README.md                            # Proje ana dokümantasyonu
+└── ROADMAP.md                           # Projenin geliştirme adımları
 ```
 
 ---
@@ -105,7 +105,7 @@ Bu çalışma tamamen eğitimsel ve savunma amaçlı güvenlik araştırması ni
 ```bash
 git clone https://github.com/safahbo/Sizma-Testi-Final-Proje.git
 
-cd pentest-memory-analysis
+cd Sizma-Testi-Final-Proje
 ```
 
 ## Ortam Değişkenleri
@@ -126,14 +126,21 @@ docker-compose up -d
 
 ---
 
-## Lokal Çalıştırma
+## Lokal Çalıştırma (Python)
+
+Projeyi test etmek için eş zamanlı çalışan iki terminal gerekmektedir.
+
+### Terminal 1 – Sanal Hedef Uygulama
+
+```bash
+python dummy_game.py
+```
+
+### Terminal 2 – Bellek Analiz Aracı
 
 ```bash
 cd src
-
-npm install
-
-node main.js
+python main.py
 ```
 
 ---
@@ -142,12 +149,12 @@ node main.js
 
 | Görev                                    | Durum |
 | ---------------------------------------- | ----- |
-| Bellek ve İşletim Sistemi Teorik Analizi | ⬜     |
-| Araştırma ve Literatür Taraması          | ⬜     |
-| Yerel Test Ortamının Kurulumu            | ⬜     |
-| Kanıt ve Ekran Görüntülerinin Toplanması | ⬜     |
-| Zafiyet Değerlendirme Raporu             | ⬜     |
-| Final Dokümantasyonu                     | ⬜     |
+| Bellek ve İşletim Sistemi Teorik Analizi | ✅     |
+| Araştırma ve Literatür Taraması          | ✅     |
+| Yerel Test Ortamının Kurulumu            | ✅     |
+| Kanıt ve Ekran Görüntülerinin Toplanması | ✅     |
+| Zafiyet Değerlendirme Raporu             | ✅     |
+| Final Dokümantasyonu                     | ✅     |
 
 ---
 
@@ -165,12 +172,23 @@ node main.js
 
 Bu proje aşağıdaki sızma testi aşamalarını referans almaktadır:
 
-1. Keşif (Reconnaissance)
-2. Numaralandırma (Enumeration)
-3. Analiz (Analysis)
-4. İstismar Simülasyonu (Controlled Exploitation)
-5. Etki Değerlendirmesi (Impact Assessment)
-6. Raporlama (Reporting)
+1. **Keşif (Reconnaissance)**
+2. **Numaralandırma (Enumeration)**
+3. **Analiz (Analysis)**
+4. **Kontrollü İstismar Simülasyonu (Controlled Exploitation)**
+5. **Etki Değerlendirmesi (Impact Assessment)**
+6. **Raporlama (Reporting)**
+
+---
+
+# 🛠 Kullanılan Teknolojiler
+
+* Python
+* Docker
+* Docker Compose
+* Win32 API (Teorik Analiz)
+* Windows Bellek Yönetimi
+* Git & GitHub
 
 ---
 
@@ -188,9 +206,9 @@ Bu proje aşağıdaki sızma testi aşamalarını referans almaktadır:
 
 # ⚠️ Yasal Uyarı
 
-Bu proje yalnızca eğitimsel, akademik ve savunma amaçlı güvenlik araştırmaları için hazırlanmıştır.
+Bu proje yalnızca eğitimsel, akademik ve savunma amaçlı güvenlik araştırmaları amacıyla hazırlanmıştır.
 
-Projede yer alan tüm çalışmalar kontrollü laboratuvar ortamlarında gerçekleştirilmeli ve üçüncü taraf sistemlere izinsiz erişim amacıyla kullanılmamalıdır.
+Projede yer alan tüm çalışmalar kontrollü laboratuvar ortamlarında gerçekleştirilmelidir. İçerik, üçüncü taraf sistemlere izinsiz erişim sağlamak veya herhangi bir sistemi kötüye kullanmak amacıyla kullanılmamalıdır.
 
 Yazar ve danışman, içeriğin kötüye kullanımından sorumlu değildir.
 
@@ -198,8 +216,13 @@ Yazar ve danışman, içeriğin kötüye kullanımından sorumlu değildir.
 
 <div align="center">
 
-**İstinye Üniversitesi**
-**Penetration Testing (BGT006)**
-**2025–2026 Bahar Dönemi**
+### İstinye Üniversitesi
+
+### Penetration Testing (BGT006)
+
+### 2025–2026 Bahar Dönemi
+
+**Final Projesi**
 
 </div>
+
