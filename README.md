@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="docs/assets/istinye-university-logo.webp" alt="Istinye University Logo" width="180"/>
+<istinye-logo.png.png>
 
 ![GitHub](https://img.shields.io/badge/GitHub-Private-red?style=flat-square\&logo=github)
 ![Language](https://img.shields.io/badge/Language-Python-blue?style=flat-square)
