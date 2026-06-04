@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/safahbo/Sizma-Testi-Final-Proje/main/istinye-logo.png" alt="Istinye University Logo" width="180"/>
+<img src="docs/assets/istinye-logo.png" alt="Istinye University Logo" width="180"/>
 
 ![GitHub](https://img.shields.io/badge/GitHub-Private-red?style=flat-square\&logo=github)
 ![Language](https://img.shields.io/badge/Language-Python-blue?style=flat-square)
