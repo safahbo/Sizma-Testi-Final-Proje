@@ -103,7 +103,7 @@ Bu çalışma tamamen eğitimsel ve savunma amaçlı güvenlik araştırması ni
 ## Repository'yi Klonlama
 
 ```bash
-git clone https://github.com/safahbo/pentest-memory-analysis.git
+git clone https://github.com/safahbo/Sizma-Testi-Final-Proje.git
 
 cd pentest-memory-analysis
 ```
